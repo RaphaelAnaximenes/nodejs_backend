@@ -56,51 +56,8 @@ exports.create = (req, res, next) =>  {
             });
         });
     }
-
-}
-
-exports.login = (req, res, next) => {
-    const JWT_KEY = Utilidades.JWT_KEY;
+  
     
-    const email = req.body.email;
-    const senha = req.body.senha;
 
-    let erro = false;
-    let usuarioEncontrado;
-
-    Usuario.findOne(
-        {
-            where: {
-                email: email
-            }
-        }
-    ).then( Usuario =>{
-        if(!Usuario)
-        {
-            erro = true;
-            return res.status(401).json(
-                {
-                    mensagem: "Credenciais inválidas"
-                }
-            );
-        } else {
-            usuarioEncontrado = usuario
-            return bcrypt.compare(senha).Usuario.senha();
-        }
-    })
-    .then( resultado => {
-        if(!erro)
-        {
-         if(!resultado)    
-         {
-            res.status(401).json(
-                {
-                    mensagem: 'Credenciais inválidas'
-                }
-            )
-         }
-        }
-    })
-    .catch();
-
+    
 };
